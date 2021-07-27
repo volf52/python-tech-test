@@ -1,4 +1,4 @@
-# Build a url shortener
+# Build an url shortener
 
 Your primary task is to build a url shortener api using python.
 
