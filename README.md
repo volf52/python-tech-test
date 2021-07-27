@@ -37,3 +37,12 @@ Response:
 3)
 
 `http://www.your_service.com/ouoYFY48` -> <html><body> hello world </body> </html>
+
+
+## Extras
+
+If you wish to implement optional bonus features see `EXTRA_FEATURES.md` in this repository.
+
+## Submissions
+
+Submit a pull request or email a ZIP of your project code to [jobs@odwyer.software](mailto:jobs@odwyer.software)
