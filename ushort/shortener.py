@@ -1,7 +1,8 @@
 from secrets import choice
 from string import ascii_letters, digits
 from typing import Optional
-from urllib.parse import urlparse
+
+import validators
 
 CHOICES = ascii_letters + digits
 
@@ -19,6 +20,4 @@ def validate_url_id(url_id: str) -> Optional[str]:
 
 
 def is_valid_url(url: str) -> bool:
-    parse_result = urlparse(url)
-
-    return parse_result.scheme.startswith("http") and len(parse_result.netloc) > 2
+    return not isinstance(validators.url(url), validators.ValidationFailure)
