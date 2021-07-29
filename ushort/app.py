@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException, Path
 from fastapi.requests import Request
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import Response, HTMLResponse, RedirectResponse
 from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
 
 from ushort.db import get_url_count, get_url_freq, get_url_table, update_url_count
@@ -11,7 +11,7 @@ app = FastAPI()
 
 
 @app.post("/shorten_url")
-async def shorten_url(ushort: URLShortenRequest, req: Request):
+async def shorten_url(ushort: URLShortenRequest, req: Request, resp: Response):
     url = ushort.url
 
     if not is_valid_url(url):
@@ -29,6 +29,8 @@ async def shorten_url(ushort: URLShortenRequest, req: Request):
 
     url_counter = get_url_freq()
     url_counter.update([url])
+
+    resp.status_code = 201
 
     return {"shortened_url": f"{req.url.scheme}://{req.url.netloc}/s/{url_id}"}
 
